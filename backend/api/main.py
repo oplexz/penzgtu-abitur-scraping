@@ -7,7 +7,7 @@ import logging
 from pathlib import Path
 import os
 
-from backend.scraper.scraper import PenzGTUAbiturScraper
+from scraper.scraper import PenzGTUAbiturScraper
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
