@@ -17,7 +17,10 @@ export function Header({
 }: HeaderProps) {
     const formatTimestamp = (timestamp: string): string => {
         try {
-            return format(new Date(timestamp), 'dd.MM.yyyy HH:mm', {
+            // Convert UTC timestamp to Moscow time (UTC+3)
+            const utcDate = new Date(timestamp);
+            const moscowDate = new Date(utcDate.getTime() + 3 * 60 * 60 * 1000);
+            return format(moscowDate, 'dd.MM.yyyy HH:mm', {
                 locale: ru,
             });
         } catch {
