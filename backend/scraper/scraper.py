@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class PenzGTUAbiturScraper:
-    def __init__(self, config_path: str = "backend/data/config/directions.json"):
+    def __init__(self, config_path: str = "data/config/directions.json"):
         self.config_path = config_path
         self.directions = self._load_config()
         self.session = requests.Session()
@@ -189,7 +189,7 @@ class PenzGTUAbiturScraper:
             timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f"session_{timestamp}.json"
 
-        sessions_dir = "backend/data/sessions"
+        sessions_dir = "data/sessions"
         os.makedirs(sessions_dir, exist_ok=True)
 
         filepath = os.path.join(sessions_dir, filename)
@@ -197,7 +197,7 @@ class PenzGTUAbiturScraper:
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(session_data, f, ensure_ascii=False, indent=2)
 
-        latest_path = "backend/data/latest.json"
+        latest_path = "data/latest.json"
         with open(latest_path, "w", encoding="utf-8") as f:
             json.dump(session_data, f, ensure_ascii=False, indent=2)
 

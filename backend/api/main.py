@@ -30,7 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATA_DIR = Path("backend/data")
+DATA_DIR = Path("data")
 SESSIONS_DIR = DATA_DIR / "sessions"
 LATEST_FILE = DATA_DIR / "latest.json"
 CONFIG_FILE = DATA_DIR / "config" / "directions.json"
