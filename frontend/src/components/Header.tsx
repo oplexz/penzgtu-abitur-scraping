@@ -1,12 +1,10 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { useState } from 'react';
 import type { Statistics } from '../types/api';
 
 interface HeaderProps {
     loading: boolean;
     onScraping: () => void;
-    onSearch: (code: string) => void;
     error: string | null;
     statistics: Statistics | null;
 }
@@ -14,18 +12,9 @@ interface HeaderProps {
 export function Header({
     loading,
     onScraping,
-    onSearch,
     error,
     statistics,
 }: HeaderProps) {
-    const [searchCode, setSearchCode] = useState<string>('');
-
-    const handleSearch = () => {
-        if (searchCode.trim()) {
-            onSearch(searchCode.trim());
-        }
-    };
-
     const formatTimestamp = (timestamp: string): string => {
         try {
             return format(new Date(timestamp), 'dd.MM.yyyy HH:mm', {
@@ -38,49 +27,17 @@ export function Header({
 
     return (
         <div className='mb-8'>
-            <h1 className='text-4xl font-bold mb-6'>
+            <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 leading-tight'>
                 Мониторинг поступающих в аспирантуру ПензГТУ
             </h1>
 
-            <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
-                <div className='flex gap-4'>
-                    <input
-                        type='text'
-                        placeholder='Код абитуриента'
-                        className='input input-bordered min-w-[200px]'
-                        value={searchCode}
-                        onChange={(e) => setSearchCode(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                    />
-                    <button
-                        className='btn btn-outline'
-                        onClick={handleSearch}
-                        disabled={!searchCode.trim()}
-                    >
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            className='h-5 w-5'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            stroke='currentColor'
-                        >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth={2}
-                                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-                            />
-                        </svg>
-                        Найти
-                    </button>
-                </div>
-
-                <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-col sm:flex-row sm:items-end sm:justify-end gap-4 mb-6'>
+                <div className='flex flex-col sm:flex-row sm:items-center gap-4'>
                     {statistics?.timestamp && (
                         <div className='flex items-center gap-2 text-sm text-base-content/70'>
                             <svg
                                 xmlns='http://www.w3.org/2000/svg'
-                                className='h-4 w-4'
+                                className='h-4 w-4 flex-shrink-0'
                                 fill='none'
                                 viewBox='0 0 24 24'
                                 stroke='currentColor'
@@ -92,14 +49,17 @@ export function Header({
                                     d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
                                 />
                             </svg>
-                            <span>
-                                Последнее обновление:{' '}
+                            <span className='break-words'>
+                                <span className='hidden sm:inline'>
+                                    Последнее обновление:{' '}
+                                </span>
+                                <span className='sm:hidden'>Обновлено: </span>
                                 {formatTimestamp(statistics.timestamp)}
                             </span>
                         </div>
                     )}
                     <button
-                        className='btn btn-primary'
+                        className='btn btn-primary w-full sm:w-auto'
                         onClick={onScraping}
                         disabled={loading}
                     >
@@ -121,7 +81,12 @@ export function Header({
                                 />
                             </svg>
                         )}
-                        {loading ? 'Обновление...' : 'Обновить данные'}
+                        <span className='hidden sm:inline'>
+                            {loading ? 'Обновление...' : 'Обновить данные'}
+                        </span>
+                        <span className='sm:hidden'>
+                            {loading ? 'Обновление...' : 'Обновить'}
+                        </span>
                     </button>
                 </div>
             </div>

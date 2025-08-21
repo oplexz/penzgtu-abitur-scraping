@@ -21,7 +21,7 @@ export function SearchDialog({
 
     return (
         <dialog className={`modal ${isOpen ? 'modal-open' : ''}`}>
-            <div className='modal-box max-w-4xl'>
+            <div className='modal-box max-w-4xl w-full mx-4'>
                 <h3 className='font-bold text-lg mb-4'>
                     Результаты поиска: {searchResult?.applicant_code}
                 </h3>
@@ -67,7 +67,7 @@ export function SearchDialog({
                                                     {result.direction_code} -{' '}
                                                     {result.direction_name}
                                                 </h5>
-                                                <div className='flex flex-wrap gap-3 text-sm'>
+                                                <div className='flex flex-wrap gap-2 sm:gap-3 text-sm'>
                                                     <div className='flex items-center gap-1'>
                                                         <strong>
                                                             Согласие:
@@ -103,7 +103,7 @@ export function SearchDialog({
                                                             }
                                                         </span>
                                                     </div>
-                                                    <div className='flex items-center gap-1'>
+                                                    <div className='hidden sm:flex items-center gap-1'>
                                                         <strong>СД:</strong>
                                                         <span>
                                                             {
@@ -112,7 +112,7 @@ export function SearchDialog({
                                                             }
                                                         </span>
                                                     </div>
-                                                    <div className='flex items-center gap-1'>
+                                                    <div className='hidden sm:flex items-center gap-1'>
                                                         <strong>ИЯ:</strong>
                                                         <span>
                                                             {

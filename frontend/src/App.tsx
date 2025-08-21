@@ -86,7 +86,6 @@ function App() {
             <Header
                 loading={loading}
                 onScraping={handleScraping}
-                onSearch={handleSearch}
                 error={error}
                 statistics={statistics}
             />

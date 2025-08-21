@@ -117,52 +117,65 @@ export function DirectionsList({
                             {directionData.applicants &&
                             directionData.applicants.length > 0 ? (
                                 <div>
-                                    <div className='mb-4 flex flex-wrap gap-2 items-center'>
+                                    <div className='mb-4 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:items-center'>
                                         <span className='text-sm font-medium'>
                                             Сортировка:
                                         </span>
-                                        <button
-                                            className={getSortButtonClass(
-                                                directionId,
-                                                'applicationNumber'
-                                            )}
-                                            onClick={() =>
-                                                handleSortChange(
+                                        <div className='flex flex-wrap gap-2'>
+                                            <button
+                                                className={getSortButtonClass(
                                                     directionId,
                                                     'applicationNumber'
-                                                )
-                                            }
-                                        >
-                                            По номеру заявления
-                                        </button>
-                                        <button
-                                            className={getSortButtonClass(
-                                                directionId,
-                                                'applicationCount'
-                                            )}
-                                            onClick={() =>
-                                                handleSortChange(
+                                                )}
+                                                onClick={() =>
+                                                    handleSortChange(
+                                                        directionId,
+                                                        'applicationNumber'
+                                                    )
+                                                }
+                                            >
+                                                <span className='hidden sm:inline'>
+                                                    По номеру заявления
+                                                </span>
+                                                <span className='sm:hidden'>
+                                                    № заявления
+                                                </span>
+                                            </button>
+                                            <button
+                                                className={getSortButtonClass(
                                                     directionId,
                                                     'applicationCount'
-                                                )
-                                            }
-                                        >
-                                            По кол-ву заявлений абитуриента
-                                        </button>
-                                        <button
-                                            className={getSortButtonClass(
-                                                directionId,
-                                                'priority'
-                                            )}
-                                            onClick={() =>
-                                                handleSortChange(
+                                                )}
+                                                onClick={() =>
+                                                    handleSortChange(
+                                                        directionId,
+                                                        'applicationCount'
+                                                    )
+                                                }
+                                            >
+                                                <span className='hidden sm:inline'>
+                                                    По кол-ву заявлений
+                                                    абитуриента
+                                                </span>
+                                                <span className='sm:hidden'>
+                                                    Кол-во заявлений
+                                                </span>
+                                            </button>
+                                            <button
+                                                className={getSortButtonClass(
                                                     directionId,
                                                     'priority'
-                                                )
-                                            }
-                                        >
-                                            По приоритету
-                                        </button>
+                                                )}
+                                                onClick={() =>
+                                                    handleSortChange(
+                                                        directionId,
+                                                        'priority'
+                                                    )
+                                                }
+                                            >
+                                                По приоритету
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className='overflow-x-auto'>
                                         <table className='table table-sm table-zebra'>
@@ -171,11 +184,19 @@ export function DirectionsList({
                                                     <th>№</th>
                                                     <th>Код</th>
                                                     <th>Согласие</th>
-                                                    <th>СД</th>
-                                                    <th>ИЯ</th>
-                                                    <th>ИД</th>
+                                                    <th className='hidden sm:table-cell'>
+                                                        СД
+                                                    </th>
+                                                    <th className='hidden sm:table-cell'>
+                                                        ИЯ
+                                                    </th>
+                                                    <th className='hidden sm:table-cell'>
+                                                        ИД
+                                                    </th>
                                                     <th>Приоритет</th>
-                                                    <th>Сумма</th>
+                                                    <th className='hidden sm:table-cell'>
+                                                        Сумма
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -230,15 +251,15 @@ export function DirectionsList({
                                                                 }
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                        <td className='hidden sm:table-cell'>
                                                             {applicant.sd_score}
                                                         </td>
-                                                        <td>
+                                                        <td className='hidden sm:table-cell'>
                                                             {
                                                                 applicant.lang_score
                                                             }
                                                         </td>
-                                                        <td>
+                                                        <td className='hidden sm:table-cell'>
                                                             {
                                                                 applicant.achievements
                                                             }
@@ -246,7 +267,7 @@ export function DirectionsList({
                                                         <td>
                                                             {applicant.priority}
                                                         </td>
-                                                        <td>
+                                                        <td className='hidden sm:table-cell'>
                                                             {
                                                                 applicant.total_score
                                                             }
