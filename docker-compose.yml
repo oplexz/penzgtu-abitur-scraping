@@ -2,7 +2,7 @@ services:
     backend:
         build: ./backend
         ports:
-            - '8000:8000'
+            - '127.0.0.1:8000:8000'
         environment:
             - CORS_ORIGINS=${CORS_ORIGINS}
         volumes:
@@ -20,10 +20,10 @@ services:
         build:
             context: ./frontend
             args:
+                - VITE_BASE_URL=${VITE_BASE_URL}
                 - VITE_BASE_PATH=${VITE_BASE_PATH}
-                - VITE_API_BASE_URL=${VITE_API_BASE_URL}
         ports:
-            - '3000:80'
+            - '127.0.0.1:3000:80'
         depends_on:
             - backend
         restart: unless-stopped

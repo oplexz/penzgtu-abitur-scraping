@@ -9,10 +9,22 @@ import type {
     Statistics,
 } from '../types/api';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE_URL = import.meta.env.VITE_BASE_URL || '';
+const API_BASE_PATH = import.meta.env.VITE_BASE_PATH || '/';
+
+// Construct the base URL by combining base URL with base path
+const getBaseUrl = () => {
+    if (!API_BASE_URL) return '';
+
+    // Remove trailing slash from base URL and leading slash from base path if present
+    const cleanBaseUrl = API_BASE_URL.replace(/\/$/, '');
+    const cleanBasePath = API_BASE_PATH.replace(/^\//, '').replace(/\/$/, '');
+
+    return `${cleanBaseUrl}/${cleanBasePath}`;
+};
 
 const api = axios.create({
-    baseURL: API_BASE_URL,
+    baseURL: getBaseUrl(),
     timeout: 30000,
 });
 
