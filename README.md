@@ -55,16 +55,3 @@ docker-compose up -d
 4. Приложение будет доступно по адресу:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
-
-## Конфигурация для продакшена
-
-Для развертывания на поддомене (например, `https://domain.com/penzgtu-abitur/`):
-
-1. Настройте переменные в `.env`:
-```env
-VITE_BASE_URL=https://your-domain.com
-VITE_BASE_PATH=/penzgtu-abitur/
-CORS_ORIGINS=https://your-domain.com
-```
-
-2. Настройте Nginx согласно `nginx-host.conf`
