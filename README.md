@@ -12,7 +12,9 @@
 
 ## Скриншоты
 
-<!-- Добавить скриншоты -->
+<img width="350" src="https://github.com/user-attachments/assets/7927be24-b243-4cc1-955b-cce0567d27c6" />
+<img width="350" src="https://github.com/user-attachments/assets/5d065832-6f38-4b7d-a959-701acc2c9e8b" />
+
 
 ## Технологии
 
